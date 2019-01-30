@@ -114,6 +114,12 @@ return [
             'url'  => 'painel',
             'icon'  => 'home',
         ],
+        'PRODUTOS',
+        [
+            'text' => 'Produtos',
+            'url'  => 'produtos',
+            'icon'  => 'calculator',
+        ],
 
     ],
 
