@@ -9,4 +9,9 @@ class Categoria extends Model
    public $timestamps = false;
    
    protected $fillable = ['nome'];
+
+   
+   public $rules = [
+      'nome' => 'required|string',
+   ];
 }

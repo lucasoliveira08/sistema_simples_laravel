@@ -13,4 +13,8 @@ class Produto extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::class, 'categoria_id');
     }
+
+    public $rules = [
+        'desc' => 'required|string',
+     ];
 }

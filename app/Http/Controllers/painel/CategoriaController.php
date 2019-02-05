@@ -22,7 +22,15 @@ class CategoriaController extends Controller
     }
 
     public function guardarCat(Request $req){
-        $insert = $this->categoria->create($req->all());
+
+        $dataForm = $req->all();
+
+       $validate = validator($dataForm, $this->categoria->rules);
+       if($validate->fails()){
+           return redirect()->route('painel')->withErrors($validate);
+       }
+
+       $insert = $this->categoria->create($dataForm);
 
         if ($insert)
         return redirect()
@@ -59,8 +67,17 @@ class CategoriaController extends Controller
 
     public function update($id, Request $req){
         $cat = $this->categoria->find($id);
-        $update = $cat->update($req->all());
 
+        $dataForm = $req->all();
+
+        $validate = validator($dataForm, $this->categoria->rules);
+
+        if($validate->fails()){
+            return redirect()->route('painel.edit', compact('cat'))->withErrors($validate)->withInput();
+        }
+
+       $update = $cat->update($dataForm);
+        
         if($update){
             return redirect()->route('painel');
         }

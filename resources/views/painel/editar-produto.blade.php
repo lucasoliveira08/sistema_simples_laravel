@@ -31,10 +31,11 @@
                     </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('desc') ? 'has-error' : '' }}">
                     {{ csrf_field() }}
                     <label for="desc">Descrição</label>
                     <input type="text" name="desc" value="{{ $produtos->desc}}" class="form-control"> 
+                    {!! $errors->first('desc', '<span class="help-block">:message</span>') !!}
                 </div>
 
             <div class="form-group">

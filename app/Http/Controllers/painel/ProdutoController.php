@@ -27,7 +27,16 @@ class ProdutoController extends Controller
 
 
     public function guardarProduto(Request $req){
-        $insert = $this->produto->create($req->all());
+
+        $dataForm = $req->all();
+
+        $validate = validator($dataForm, $this->produto->rules);
+
+        if($validate->fails()){
+            return redirect()->route('produtos')->withErrors($validate);
+        }
+
+        $insert = $this->produto->create($dataForm);
 
         if ($insert)
         return redirect()
@@ -63,10 +72,21 @@ class ProdutoController extends Controller
 
     public function update($id, Request $req){
         $produto_update = $this->produto->find($id);
-        $update = $produto_update->update($req->all());
-
+        
+        $dataForm = $req->all();
+    
+        $validate = validator($dataForm, $this->produto->rules);
+    
+        if($validate->fails()){
+            return redirect()->route('produto.editar', compact('produto_update'))->withErrors($validate)->withInput();
+        }
+    
+        $update = $produto_update->update($dataForm);
+    
         if($update){
             return redirect()->route('produtos');
         }
     }
 }
+
+

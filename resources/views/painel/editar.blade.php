@@ -21,10 +21,11 @@
                 </div>
             @endif           
         <form action="{{ route('painel.update', $cat->id) }}" method="POST">
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
                 {{ csrf_field() }}
                 <label for="nome">Categoria</label>
             <input type="text" name="nome" value="{{$cat->nome}}" class="form-control">
+            {!! $errors->first('nome', '<span class="help-block">:message</span>') !!}
             </div>
             <div class="form-group">
                 <center><input type="submit" name="button" class="btn btn-success btn-sd" value="SALVAR"></center>

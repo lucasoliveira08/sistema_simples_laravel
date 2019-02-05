@@ -63,9 +63,10 @@
                     @endforelse
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('desc') ? 'has-error' : '' }}">
                 <label for="desc">Descrição</label>
                 <input type="text" name="desc" class="form-control">
+                {!! $errors->first('desc', '<span class="help-block">:message</span>') !!}
             </div>
             <div class="form-group">
                 <center><input type="submit" name="button" class="btn btn-success btn-sd" value="Registrar"></center>
