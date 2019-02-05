@@ -35,17 +35,25 @@ class CategoriaController extends Controller
 
 
     public function deletar($id){
-        $categoria = $this->categoria->find($id);
-        $delete = $categoria->delete();
+        if($this->categoria->find($id)){
+            $categoria = $this->categoria->find($id);
+            $delete = $categoria->delete();
 
-        if($delete){
+            if($delete){
+                return redirect()->route('painel');
+            }
+        } else{
             return redirect()->route('painel');
         }
     }
 
     public function editar($id){
-        $cat = $this->categoria->find($id);
-        return view('painel.editar', compact('cat'));
+        if($this->categoria->find($id)){
+            $cat = $this->categoria->find($id);
+            return view('painel.editar', compact('cat'));
+        } else{
+            return redirect()->route('painel');
+        }
     }
 
 

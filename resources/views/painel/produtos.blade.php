@@ -27,7 +27,7 @@
                             <td>{{ $produto->id }}</td>
                             <td>{{ $produto->categoria->nome }}</td>
                             <td>{{ $produto->desc }}</td>
-                        <th><a href="#" class="btn btn-warning btn-sd">EDITAR</a><a style="margin-left:10px;" href="{{route('produto.deletar', $produto->id)}}" class="btn btn-danger btn-sd">EXCLUIR</a></th>
+                        <th><a href="{{route('produto.editar', $produto->id)}}" class="btn btn-warning btn-sd">EDITAR</a><a style="margin-left:10px;" href="{{route('produto.deletar', $produto->id)}}" class="btn btn-danger btn-sd">EXCLUIR</a></th>
                         </tr>
                         @empty
                             <td colspan="3" class="alert alert-danger">Nenhum produto registrado!</td>

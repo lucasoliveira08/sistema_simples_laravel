@@ -16,9 +16,12 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Painel'], function () {
     Route::get('produtos', 'ProdutoController@index')->name('produtos');
     Route::post('produtos', 'ProdutoController@guardarProduto')->name('guardarProduto');
     Route::get('produtos/deletar/{id}', 'ProdutoController@deletar')->name('produto.deletar');
+    Route::get('produtos/editar/{id}', 'ProdutoController@editar')->name('produto.editar');
+    Route::post('produtos/editar/{id}', 'ProdutoController@update')->name('produto.update');
 
 
 });
+
 Route::get('/', 'Site\SiteController@index')->name('home');
 
 

@@ -39,10 +39,33 @@ class ProdutoController extends Controller
     }
 
     public function deletar($id){
-        $produto = $this->produto->find($id);
-        $delete = $produto->delete();
+        if($this->produto->find($id)){
+            $produto = $this->produto->find($id);
+            $delete = $produto->delete();
 
-        if($delete){
+            if($delete){
+                return redirect()->route('produtos');
+            }
+        } else{
+            return redirect()->route('produtos');
+        }
+    }
+
+    public function editar($id){
+        if($this->produto->find($id)){
+            $produtos = $this->produto->find($id);
+            $categorias = $this->categoria->all();
+            return view('painel.editar-produto', compact('produtos'), compact('categorias'));
+        } else{
+            return redirect()->route('produtos');
+        }
+    }
+
+    public function update($id, Request $req){
+        $produto_update = $this->produto->find($id);
+        $update = $produto_update->update($req->all());
+
+        if($update){
             return redirect()->route('produtos');
         }
     }
